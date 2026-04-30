@@ -6,21 +6,29 @@
       name: "Glasreinigung",
       blurb: "Streifenfrei und transparent — innen wie außen.",
       items: ["Fenster & Rahmen", "Schaufenster & Vordächer", "Wintergärten & Glasfassaden", "Fensterbänke innen / außen"],
+      img: "images/glasreinigung.jpg",
+      alt: "Glasreinigung — professioneller Fensterputz",
     },
     unterhalt: {
       name: "Unterhaltsreinigung",
       blurb: "Regelmäßige Pflege für Wohnungen, Häuser und Büros.",
       items: ["Reinigung nach Hausfrauenart", "Grundreinigung", "Büro- & Praxisreinigung", "Nach Vereinbarung"],
+      img: "images/unterhaltsreinigung.jpg",
+      alt: "Unterhaltsreinigung — Reinigungskraft saugt einen Wohnraum",
     },
     treppen: {
       name: "Treppenhausreinigung",
       blurb: "Vom Dach bis zum Keller — nach festem Turnus.",
       items: ["Wöchentlich", "14-tägig", "Monatlich", "Inkl. Geländer & Briefkästen"],
+      img: "images/treppenhaus.jpg",
+      alt: "Treppenhausreinigung — Treppenhaus eines Mehrfamilienhauses",
     },
     sonder: {
       name: "Sonderleistungen",
       blurb: "Auf Anfrage und je nach Bedarf — flexibel umgesetzt.",
       items: ["Terrassen & Balkone", "Bauendreinigung", "Einzugs- & Auszugsreinigung", "Individuelle Aufträge"],
+      img: "images/sonderleistungen.jpg",
+      alt: "Sonderleistungen — professionelle Reinigungsutensilien",
     },
   };
 
@@ -35,6 +43,7 @@
   const itemsEl = document.querySelector("[data-panel-items]");
   const eyebrowEl = document.querySelector("[data-panel-eyebrow]");
   const photoEl = document.querySelector("[data-panel-photo]");
+  const imgEl = document.querySelector("[data-panel-img]");
 
   function setTab(key) {
     const idx = ORDER.indexOf(key);
@@ -51,6 +60,10 @@
     if (blurbEl) blurbEl.textContent = data.blurb;
     if (eyebrowEl) eyebrowEl.textContent = "Gewerk 0" + (idx + 1);
     if (photoEl) photoEl.textContent = data.name + " · in Essen";
+    if (imgEl && data.img) {
+      imgEl.src = data.img;
+      imgEl.alt = data.alt || data.name;
+    }
     if (itemsEl) {
       itemsEl.innerHTML = data.items
         .map((it) => "<li>" + checkSvg + "<span>" + it + "</span></li>")

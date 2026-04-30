@@ -11,6 +11,7 @@ Gewerbe und Privatkunden im westlichen Ruhrgebiet.
 - `index.html` — One-Pager mit allen Sektionen (Hero, Leistungen, Vorgehensweise, Über uns, Referenzen, Einsatzgebiet, Kontakt, Footer)
 - `styles.css` — Vollständige Stylesheet (Inter + Instrument Serif + JetBrains Mono via Google Fonts, responsive Breakpoints)
 - `script.js` — Service-Tabs, Chip-Auswahl im Kontaktformular, Mobile-Nav, Formular-Bestätigung
+- `images/` — Stockfotos von Pexels (siehe [CREDITS.md](CREDITS.md) für Lizenz und Quellen)
 
 ## Lokal öffnen
 

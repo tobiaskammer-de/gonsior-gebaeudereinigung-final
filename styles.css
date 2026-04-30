@@ -86,7 +86,7 @@ h1, h2, h3, h4 {
 .gn-btn--ghost { background: transparent; color: var(--gn-ink); border-color: var(--gn-line); }
 .gn-btn--ghost:hover { background: var(--gn-bg-soft); }
 
-/* Photo placeholder (stripes) */
+/* Photo container (stripe fallback + real image overlay) */
 .gn-photo {
   position: relative;
   background:
@@ -106,15 +106,27 @@ h1, h2, h3, h4 {
   color: rgba(255,255,255,0.55);
   border-color: rgba(255,255,255,0.08);
 }
+.gn-photo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .gn-photo__label {
+  position: relative;
+  z-index: 1;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 10px 12px;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
+  color: var(--gn-ink);
+  margin: 12px;
 }
-.gn-photo--dark .gn-photo__label { background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.8); }
+.gn-photo--dark .gn-photo__label { background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.85); }
 
 .gn-input, .gn-textarea {
   width: 100%;
