@@ -109,6 +109,56 @@
   });
   if (tabs.length) setTab("glas");
 
+  // ─── Mobile: Panel direkt unter aktivem Tab platzieren ─────────────────────
+  const tabsContainer = document.querySelector(".vb-services-tabs");
+  const mobileMQ = window.matchMedia("(max-width: 880px)");
+  const panelOriginalNext = panel ? panel.nextSibling : null;
+  const panelOriginalParent = panel ? panel.parentNode : null;
+
+  function repositionPanel() {
+    if (!panel || !tabsContainer) return;
+    if (mobileMQ.matches) {
+      const activeTab = tabsContainer.querySelector(".vb-tab.active");
+      if (activeTab && activeTab.nextElementSibling !== panel) {
+        const after = activeTab.nextSibling;
+        if (after) tabsContainer.insertBefore(panel, after);
+        else tabsContainer.appendChild(panel);
+      }
+    } else if (panel.parentNode !== panelOriginalParent) {
+      panelOriginalParent.insertBefore(panel, panelOriginalNext);
+    }
+  }
+
+  // Beim Tab-Wechsel mitziehen
+  tabs.forEach((t) => t.addEventListener("click", () => requestAnimationFrame(repositionPanel)));
+  if (typeof mobileMQ.addEventListener === "function") {
+    mobileMQ.addEventListener("change", repositionPanel);
+  } else if (typeof mobileMQ.addListener === "function") {
+    mobileMQ.addListener(repositionPanel);
+  }
+  repositionPanel();
+
+  // ─── Header / Logo: smooth shrinken beim Scrollen (mobil sichtbar) ─────────
+  const navEl = document.querySelector(".vb-nav");
+  if (navEl) {
+    let scrollTicking = false;
+    const updateNavScrolled = () => {
+      navEl.classList.toggle("is-scrolled", window.scrollY > 24);
+      scrollTicking = false;
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(updateNavScrolled);
+        }
+      },
+      { passive: true }
+    );
+    updateNavScrolled();
+  }
+
   // ─── Service chips (contact form) ──────────────────────────────────────────
   const chipsRoot = document.querySelector("[data-chips]");
   if (chipsRoot) {
@@ -267,27 +317,63 @@
   if (document.readyState === "complete") initMap();
   else window.addEventListener("load", initMap);
 
-  // ─── Contact form: in-page thank-you ───────────────────────────────────────
+  // ─── Contact form: AJAX-Versand via Formsubmit ─────────────────────────────
+  // Versendet das Formular automatisch als E-Mail an dienstleistung-gonsior@web.de
+  // ohne dass sich der Mail-Client des Nutzers öffnet.
   const form = document.getElementById("contact-form");
   if (form) {
-    form.addEventListener("submit", (e) => {
-      // Allow the mailto: action to fire, but also swap the form for a confirmation.
-      // (mailto opens the user's mail client; we still acknowledge in-page.)
-      setTimeout(() => {
-        const thanks = document.createElement("div");
-        thanks.className = "vb-form-thanks";
-        thanks.innerHTML =
-          checkSvg +
-          " Vielen Dank — Ihre Anfrage ist auf dem Weg.<br>Wir melden uns innerhalb von 24 Stunden.";
-        form.replaceWith(
-          (() => {
-            const wrap = document.createElement("form");
-            wrap.className = "vb-form";
-            wrap.appendChild(thanks);
-            return wrap;
-          })()
-        );
-      }, 100);
+    const submitBtn = form.querySelector(".vb-form-cta");
+
+    function showThanks() {
+      const wrap = document.createElement("form");
+      wrap.className = "vb-form";
+      const thanks = document.createElement("div");
+      thanks.className = "vb-form-thanks";
+      thanks.innerHTML =
+        checkSvg +
+        " Vielen Dank — Ihre Anfrage ist auf dem Weg.<br>Wir melden uns innerhalb von 24 Stunden.";
+      wrap.appendChild(thanks);
+      form.replaceWith(wrap);
+    }
+
+    function showError() {
+      let err = form.querySelector(".vb-form-error");
+      if (!err) {
+        err = document.createElement("div");
+        err.className = "vb-form-error";
+        err.style.cssText =
+          "margin:16px 0;padding:14px 16px;border:1px solid #c44;background:#fbecec;color:#7a1a1a;font-size:14px;border-radius:4px;";
+        form.insertBefore(err, submitBtn);
+      }
+      err.textContent =
+        "Senden fehlgeschlagen. Bitte rufen Sie uns kurz an: 0152 2914 9388 — oder mailen direkt an dienstleistung-gonsior@web.de.";
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Anfrage absenden";
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Wird gesendet…";
+      }
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && (data.success === "true" || data.success === true)) {
+          showThanks();
+        } else {
+          showError();
+        }
+      } catch (_) {
+        showError();
+      }
     });
   }
 })();

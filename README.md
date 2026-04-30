@@ -9,8 +9,9 @@ Gewerbe und Privatkunden im westlichen Ruhrgebiet.
 ## Struktur
 
 - `index.html` — One-Pager mit allen Sektionen (Hero, Leistungen, Vorgehensweise, Über uns, Referenzen, Einsatzgebiet, Kontakt, Footer)
-- `styles.css` — Vollständige Stylesheet (Inter + Instrument Serif + JetBrains Mono via Google Fonts, responsive Breakpoints)
-- `script.js` — Service-Tabs, Chip-Auswahl im Kontaktformular, Mobile-Nav, Formular-Bestätigung
+- `styles.css` — Vollständige Stylesheet (Inter + Instrument Serif + JetBrains Mono selbst gehostet aus `/fonts`, responsive Breakpoints)
+- `script.js` — Service-Tabs, Chip-Auswahl im Kontaktformular, Mobile-Nav, AJAX-Formular-Versand
+- `fonts/` — Self-hosted Webfonts (woff2) — keine externen Calls an Google
 - `images/` — Stockfotos von Pexels (siehe [CREDITS.md](CREDITS.md) für Lizenz und Quellen)
 
 ## Lokal öffnen
