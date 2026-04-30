@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231f3d2b'/><text x='16' y='23' font-family='serif' font-size='22' fill='white' text-anchor='middle'>G</text></svg>" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 </head>
 <body>
 
@@ -46,7 +47,7 @@
   <!-- NAV -->
   <nav class="vb-nav">
     <a class="vb-logo" href="#top" aria-label="Gonsior Gebäudereinigung Dienstleistungsservice — zur Startseite">
-      <img src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" />
+      <img src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" width="992" height="454" />
     </a>
     <button class="vb-nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menü</button>
     <div class="vb-nav-links" id="primary-nav">
@@ -92,13 +93,13 @@
         </div>
       </div>
       <div class="vb-hero-text-logo">
-        <img src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" />
+        <img src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" width="992" height="454" loading="eager" decoding="async" />
       </div>
     </div>
 
     <div class="vb-hero-feature">
       <div class="vb-hero-photo">
-        <img src="images/hero.jpeg" alt="Gebäudereinigung Gonsior — professionelle Glasreinigung im Einsatz" loading="eager" decoding="async" />
+        <img src="images/hero.jpeg" alt="Gebäudereinigung Gonsior — professionelle Glasreinigung im Einsatz" width="1000" height="667" loading="eager" decoding="async" fetchpriority="high" />
       </div>
       <div class="vb-hero-stats">
         <div class="vb-hero-stat">
@@ -124,8 +125,8 @@
         <span class="gn-eyebrow">Leistungen · 4 Gewerke</span>
         <h2>Was wir tun.</h2>
         <p class="lead">
-          Vier Kerngewerke, kombinierbar zu festen Turnussen oder einzeln auf Anfrage —
-          Maus über einen Bereich bewegen für Details.
+          Vier Kerngewerke, kombinierbar zu festen Turnussen oder einzeln auf Anfrage.
+          Wählen Sie einen Bereich für Details.
         </p>
       </div>
 
@@ -572,7 +573,7 @@
   <footer class="vb-footer">
     <div class="vb-footer-grid">
       <div class="vb-footer-brand">
-        <img class="vb-footer-logo" src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" />
+        <img class="vb-footer-logo" src="images/logo.png" alt="Gonsior Gebäudereinigung Dienstleistungsservice" width="992" height="454" loading="lazy" />
         <p>Inhabergeführte Gebäudereinigung in Essen. Seit 2014 verlässlich für Hausverwaltungen, Gewerbe und Privatkunden im westlichen Ruhrgebiet.</p>
       </div>
       <div>
@@ -606,7 +607,11 @@
     </div>
     <div class="vb-footer-bottom">
       <div>© 2026 Gonsior Gebäudereinigung · Inh. Manuel Gonsior</div>
-      <div>Impressum · Datenschutz · AGB</div>
+      <div>
+        <a href="impressum.html">Impressum</a> ·
+        <a href="datenschutz.html">Datenschutz</a> ·
+        <a href="datenschutz.html">AGB</a>
+      </div>
     </div>
   </footer>
 
