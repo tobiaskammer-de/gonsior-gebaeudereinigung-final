@@ -127,14 +127,26 @@
         '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
     }).addTo(map);
 
-    // 25 km Service-Radius
-    L.circle(ESSEN_BORBECK, {
+    // 25 km Service-Radius — deutlich sichtbar
+    const radiusCircle = L.circle(ESSEN_BORBECK, {
       radius: 25000,
       color: "#1f3d2b",
-      weight: 1.5,
-      opacity: 0.7,
+      weight: 2.5,
+      opacity: 0.95,
+      dashArray: "6 6",
       fillColor: "#1f3d2b",
-      fillOpacity: 0.08,
+      fillOpacity: 0.14,
+      interactive: false,
+    }).addTo(map);
+
+    // Beschriftung des Radius am nördlichen Kreisrand
+    L.marker([51.7006, 6.9711], {
+      icon: L.divIcon({
+        className: "",
+        html: '<div class="gn-map-label gn-map-label--primary">25 km Einsatzradius</div>',
+        iconSize: null,
+        iconAnchor: [70, 12],
+      }),
       interactive: false,
     }).addTo(map);
 
@@ -165,10 +177,11 @@
       L.marker(c.coords, { icon: labelIcon(c.name, c.primary) }).addTo(map);
     });
 
-    map.fitBounds(
-      L.latLngBounds(cities.map((c) => c.coords)).pad(0.35),
-      { animate: false }
-    );
+    // Auf den 25-km-Kreis zoomen, damit der Radius komplett sichtbar ist
+    map.fitBounds(radiusCircle.getBounds(), {
+      animate: false,
+      padding: [16, 16],
+    });
   }
 
   if (document.readyState === "complete") initMap();

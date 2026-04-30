@@ -355,54 +355,85 @@ h1, h2, h3, h4 {
 .vb-process-head { margin-bottom: 56px; max-width: 720px; }
 .vb-process-head h2 { font-size: 64px; margin: 16px 0 16px; }
 .vb-process-head p { color: var(--gn-ink-soft); font-size: 16px; margin: 0; }
-.vb-process-grid {
+/* Journey — horizontale Roadmap mit Strich-Illustrationen */
+.vb-journey {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border-top: 1px solid var(--gn-line);
+  padding-top: 24px;
 }
-.vb-step-card {
-  padding: 36px 28px 36px 0;
-  padding-right: 28px;
-  border-right: 1px solid var(--gn-line);
-  position: relative;
-  transition: transform 0.25s ease;
-}
-.vb-step-card:last-child { border-right: none; }
-.vb-step-card:hover { transform: translateY(-4px); }
-.vb-step-card::before {
-  content: "";
+.vb-journey-track {
   position: absolute;
-  top: -1px; left: 0;
-  width: 40px; height: 2px;
-  background: var(--gn-accent);
+  top: calc(24px + 60px); /* Mitte der Node-Kreise */
+  left: 12.5%;
+  right: 12.5%;
+  height: 0;
+  border-top: 1.5px dashed var(--gn-accent);
+  opacity: 0.5;
+  z-index: 0;
 }
-.vb-step-num {
-  font-family: 'Instrument Serif', serif;
-  font-size: 56px;
-  line-height: 1;
+.vb-journey-step {
+  position: relative;
+  z-index: 1;
+  padding: 0 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vb-journey-node {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--gn-bg);
+  border: 1.5px solid var(--gn-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gn-accent);
-  margin: 28px 0 18px;
+  margin-bottom: 28px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
-.vb-step-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 26px;
-  line-height: 1.15;
-  margin-bottom: 12px;
+.vb-journey-node svg {
+  width: 56px;
+  height: 56px;
 }
-.vb-step-desc {
-  font-size: 14px;
-  color: var(--gn-ink-soft);
-  line-height: 1.55;
-  margin: 0;
+.vb-journey-step:hover .vb-journey-node {
+  transform: translateY(-4px);
+  background: var(--gn-accent);
+  color: #fff;
+  box-shadow: 0 12px 30px -16px var(--gn-accent);
 }
-.vb-step-meta {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid var(--gn-line-soft);
+.vb-journey-num {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gn-accent);
+  margin-bottom: 10px;
+}
+.vb-journey-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 30px;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+.vb-journey-desc {
+  font-size: 14px;
+  color: var(--gn-ink-soft);
+  line-height: 1.6;
+  margin: 0 0 18px;
+  max-width: 26ch;
+}
+.vb-journey-meta {
+  margin-top: auto;
+  padding: 8px 12px;
+  border: 1px solid var(--gn-line);
+  background: var(--gn-bg-card);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gn-ink-muted);
 }
@@ -879,11 +910,13 @@ h1, h2, h3, h4 {
   .vb-tab-panel ul { grid-template-columns: 1fr; }
   .vb-tab-panel-photo { min-height: 240px; }
 
-  .vb-process-grid { grid-template-columns: 1fr 1fr; }
-  .vb-step-card { border-right: 1px solid var(--gn-line); border-bottom: 1px solid var(--gn-line); padding: 28px 16px; }
-  .vb-step-card:nth-child(2n) { border-right: none; }
-  .vb-step-num { font-size: 40px; margin: 20px 0 12px; }
-  .vb-step-title { font-size: 22px; }
+  .vb-journey { grid-template-columns: 1fr; gap: 32px; padding-top: 0; }
+  .vb-journey-track { display: none; }
+  .vb-journey-step { padding: 24px 16px 0; }
+  .vb-journey-node { width: 96px; height: 96px; margin-bottom: 20px; }
+  .vb-journey-node svg { width: 44px; height: 44px; }
+  .vb-journey-title { font-size: 26px; }
+  .vb-journey-desc { max-width: 100%; }
 
   .vb-trust-head { flex-direction: column; align-items: flex-start; }
   .vb-trust-head h2 { font-size: 36px; }
@@ -921,8 +954,7 @@ h1, h2, h3, h4 {
   .vb-hero-stats { grid-template-columns: 1fr; }
   .vb-services-tabs { grid-template-columns: 1fr; }
   .vb-tab { border-right: none; }
-  .vb-process-grid, .vb-trust-grid, .vb-area-list, .vb-footer-grid { grid-template-columns: 1fr; }
-  .vb-step-card { border-right: none; }
+  .vb-trust-grid, .vb-area-list, .vb-footer-grid { grid-template-columns: 1fr; }
   .vb-hero-text h1 { font-size: 44px; }
   .vb-services-head h2 { font-size: 32px; }
 }
