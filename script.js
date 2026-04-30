@@ -122,6 +122,51 @@
     });
   }
 
+  // ─── Smooth-Scroll für Anchor-Links mit easeInOutCubic ────────────────────
+  const easeInOutCubic = (t) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  function smoothScrollTo(targetY, duration) {
+    const startY = window.scrollY || window.pageYOffset;
+    const distance = targetY - startY;
+    if (Math.abs(distance) < 2) return;
+    let startTime = null;
+    function step(timestamp) {
+      if (startTime === null) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * easeInOutCubic(t));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function handleAnchorClick(e) {
+    const a = e.currentTarget;
+    const href = a.getAttribute("href") || "";
+    if (href.length < 2 || href[0] !== "#") return;
+    const id = href.slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+
+    // Sticky-Nav-Höhe als Offset abziehen, damit der Anker sichtbar bleibt
+    const nav = document.querySelector(".vb-nav");
+    const navOffset = nav ? nav.offsetHeight + 8 : 80;
+    const targetY = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+    // Distanzabhängige Dauer für angenehmes Tempo
+    const distance = Math.abs(targetY - (window.scrollY || 0));
+    const duration = Math.max(420, Math.min(900, 320 + distance * 0.35));
+
+    smoothScrollTo(targetY, duration);
+    if (history.pushState) history.pushState(null, "", "#" + id);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", handleAnchorClick);
+  });
+
   // ─── Mobile nav toggle ─────────────────────────────────────────────────────
   const navToggle = document.querySelector(".vb-nav-toggle");
   const navLinks = document.getElementById("primary-nav");
