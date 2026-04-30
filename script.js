@@ -103,6 +103,77 @@
     });
   }
 
+  // ─── Leaflet / OpenStreetMap ───────────────────────────────────────────────
+  // Live, lizenzklare Karte (OSM-Tiles, ODbL, Attribution gesetzt).
+  function initMap() {
+    if (typeof L === "undefined") return;
+    const el = document.getElementById("map");
+    if (!el || el.dataset.ready === "1") return;
+    el.dataset.ready = "1";
+
+    const ESSEN_BORBECK = [51.4756, 6.9711];
+
+    const map = L.map(el, {
+      center: ESSEN_BORBECK,
+      zoom: 10,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution:
+        '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
+    }).addTo(map);
+
+    // 25 km Service-Radius
+    L.circle(ESSEN_BORBECK, {
+      radius: 25000,
+      color: "#1f3d2b",
+      weight: 1.5,
+      opacity: 0.7,
+      fillColor: "#1f3d2b",
+      fillOpacity: 0.08,
+      interactive: false,
+    }).addTo(map);
+
+    const labelIcon = (text, primary) =>
+      L.divIcon({
+        className: "",
+        html:
+          '<div class="gn-map-label' +
+          (primary ? " gn-map-label--primary" : "") +
+          '">' +
+          text +
+          "</div>",
+        iconSize: null,
+        iconAnchor: [0, 0],
+      });
+
+    const cities = [
+      { name: "Essen-Borbeck", coords: [51.4756, 6.9711], primary: true },
+      { name: "Essen", coords: [51.4556, 7.0116] },
+      { name: "Mülheim a.d.R.", coords: [51.4275, 6.8825] },
+      { name: "Oberhausen", coords: [51.4969, 6.8517] },
+      { name: "Bottrop", coords: [51.5236, 6.9286] },
+      { name: "Gladbeck", coords: [51.5722, 6.9856] },
+      { name: "Gelsenkirchen", coords: [51.5177, 7.0857] },
+    ];
+
+    cities.forEach((c) => {
+      L.marker(c.coords, { icon: labelIcon(c.name, c.primary) }).addTo(map);
+    });
+
+    map.fitBounds(
+      L.latLngBounds(cities.map((c) => c.coords)).pad(0.35),
+      { animate: false }
+    );
+  }
+
+  if (document.readyState === "complete") initMap();
+  else window.addEventListener("load", initMap);
+
   // ─── Contact form: in-page thank-you ───────────────────────────────────────
   const form = document.getElementById("contact-form");
   if (form) {

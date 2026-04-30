@@ -628,6 +628,45 @@ h1, h2, h3, h4 {
   background: var(--gn-accent);
 }
 .vb-map-wrap svg { flex: 1; width: 100%; }
+.vb-map {
+  flex: 1;
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid var(--gn-line);
+  background: var(--gn-bg-soft);
+}
+/* Soften OSM tiles so they match the muted, classic palette */
+.vb-map .leaflet-tile-pane { filter: grayscale(0.55) contrast(0.95) brightness(1.02); }
+.vb-map .leaflet-control-attribution {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  background: rgba(255,255,255,0.85);
+  color: var(--gn-ink-muted);
+}
+.vb-map .leaflet-control-attribution a { color: var(--gn-ink); }
+.vb-map .leaflet-control-zoom a {
+  background: var(--gn-bg-card);
+  color: var(--gn-ink);
+  border-color: var(--gn-line);
+  font-family: 'Instrument Serif', serif;
+}
+.vb-map .leaflet-control-zoom a:hover { background: var(--gn-bg-soft); }
+.gn-map-label {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--gn-line);
+  padding: 3px 8px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--gn-ink);
+  white-space: nowrap;
+}
+.gn-map-label--primary {
+  background: var(--gn-accent);
+  color: #fff;
+  border-color: var(--gn-accent);
+  font-weight: 500;
+}
 
 /* CONTACT */
 .vb-contact {

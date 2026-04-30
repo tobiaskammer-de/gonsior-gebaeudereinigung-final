@@ -45,6 +45,26 @@ abgelegt und die Stelle in `index.html` (Sektion „ABOUT", Klasse
 `vb-about-card-photo`) gegen ein `<img>` getauscht werden — analog zu den
 übrigen Photo-Containern.
 
+## Karte: OpenStreetMap
+
+Die interaktive Karte im Bereich „Einsatzgebiet" lädt Tiles von
+**OpenStreetMap** und wird mit der Bibliothek **Leaflet** dargestellt.
+
+| Komponente | Quelle | Lizenz |
+|---|---|---|
+| Karten-Tiles | <https://www.openstreetmap.org> | © OpenStreetMap-Mitwirkende, [ODbL](https://www.openstreetmap.org/copyright) |
+| Leaflet (JS/CSS) | <https://leafletjs.com> | [BSD-2-Clause](https://github.com/Leaflet/Leaflet/blob/main/LICENSE) |
+
+Die Attributionspflicht der ODbL ist erfüllt: Auf der Karte selbst wird
+unten rechts dauerhaft „© OpenStreetMap-Mitwirkende" eingeblendet
+(Standard-Verhalten von Leaflet, nicht entfernt).
+
+> Bei stark gestiegener Reichweite empfiehlt OSM den Wechsel auf einen
+> dedizierten Tile-Anbieter (z. B. MapTiler, Stadia Maps, Carto). Für
+> einen kleinen Geschäfts-Onepager ist die direkte Nutzung der OSM-Tiles
+> jedoch ausdrücklich gestattet — siehe
+> <https://operations.osmfoundation.org/policies/tiles/>.
+
 ## Schriftarten
 
 Geladen über Google Fonts (Open Font License):

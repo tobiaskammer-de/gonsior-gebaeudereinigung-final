@@ -7,6 +7,7 @@
 <meta name="description" content="Gonsior Gebäudereinigung — inhabergeführter Reinigungsbetrieb in Essen. Glasreinigung, Unterhaltsreinigung, Treppenhausreinigung und Sonderleistungen für Hausverwaltungen, Gewerbe und Privatkunden im westlichen Ruhrgebiet." />
 <meta name="theme-color" content="#1f3d2b" />
 <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231f3d2b'/><text x='16' y='23' font-family='serif' font-size='22' fill='white' text-anchor='middle'>G</text></svg>" />
 </head>
 <body>
@@ -410,43 +411,9 @@
         <div class="vb-map-wrap">
           <div class="head">
             <span>Region · Westruhr</span>
-            <span class="live">Standort Essen-Borbeck</span>
+            <span class="live">25 km um Essen-Borbeck</span>
           </div>
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <defs>
-              <pattern id="grid-a" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="400" height="300" fill="url(#grid-a)"/>
-            <path d="M80 120 Q120 90 180 100 Q240 110 280 140 Q310 170 290 210 Q260 240 200 235 Q140 230 100 200 Q70 170 80 120 Z"
-                  fill="var(--gn-accent-soft)" stroke="var(--gn-accent)" stroke-width="1"/>
-            <g>
-              <circle cx="200" cy="170" r="6" fill="var(--gn-accent)"/>
-              <circle cx="200" cy="170" r="14" fill="none" stroke="var(--gn-accent)" stroke-width="1" opacity="0.4"/>
-              <text x="210" y="174" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Essen</text>
-            </g>
-            <g>
-              <circle cx="130" cy="140" r="3" fill="var(--gn-accent)"/>
-              <text x="140" y="144" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Mülheim</text>
-            </g>
-            <g>
-              <circle cx="110" cy="110" r="3" fill="var(--gn-accent)"/>
-              <text x="120" y="114" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Oberhausen</text>
-            </g>
-            <g>
-              <circle cx="170" cy="100" r="3" fill="var(--gn-accent)"/>
-              <text x="180" y="104" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Bottrop</text>
-            </g>
-            <g>
-              <circle cx="240" cy="130" r="3" fill="var(--gn-accent)"/>
-              <text x="250" y="134" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Gladbeck</text>
-            </g>
-            <g>
-              <circle cx="280" cy="175" r="3" fill="var(--gn-accent)"/>
-              <text x="290" y="179" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--gn-ink)">Gelsenkirchen</text>
-            </g>
-          </svg>
+          <div id="map" class="vb-map" role="img" aria-label="Karte des Einsatzgebiets — Essen und westliches Ruhrgebiet"></div>
         </div>
       </div>
     </div>
@@ -605,6 +572,7 @@
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>
