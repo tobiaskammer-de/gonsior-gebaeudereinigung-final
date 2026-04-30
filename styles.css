@@ -208,11 +208,12 @@ h1, h2, h3, h4 {
 }
 .vb-nav-links a:hover { border-color: var(--gn-accent); }
 
-/* HERO -- split */
+/* HERO -- split (text dominant, kompakte Bildspalte) */
 .vb-hero {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  min-height: 720px;
+  grid-template-columns: 1.6fr 1fr;
+  align-items: stretch;
+  min-height: 0;
   border-bottom: 1px solid var(--gn-line);
 }
 .vb-hero-text {
@@ -254,7 +255,7 @@ h1, h2, h3, h4 {
   color: var(--gn-ink-soft);
   line-height: 1.4;
 }
-.vb-hero-photo { height: 100%; min-height: 520px; }
+.vb-hero-photo { height: 100%; min-height: 0; }
 
 /* SERVICES */
 .vb-services {
@@ -311,7 +312,7 @@ h1, h2, h3, h4 {
 
 .vb-tab-panel {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 0;
   border: 1px solid var(--gn-line);
   border-top: none;
@@ -343,7 +344,7 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 .vb-tab-panel ul li svg { color: var(--gn-accent); }
-.vb-tab-panel-photo { background: var(--gn-bg-soft); min-height: 460px; }
+.vb-tab-panel-photo { background: var(--gn-bg-soft); min-height: 0; }
 
 /* PROCESS */
 .vb-process {
