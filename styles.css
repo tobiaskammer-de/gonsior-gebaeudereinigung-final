@@ -1933,6 +1933,8 @@ h1, h2, h3, h4 {
   .vb-footer { padding: 48px 24px 24px; }
   .vb-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .vb-footer-bottom { flex-direction: column; }
+  /* Footer-Logo in der Mobile-Ansicht +80 % (42 → 76 px) */
+  .vb-footer-logo { height: 76px; margin-bottom: 20px; }
 }
 
 @media (max-width: 480px) {
