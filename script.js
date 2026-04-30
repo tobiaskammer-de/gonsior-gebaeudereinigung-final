@@ -307,11 +307,14 @@
       L.marker(c.coords, { icon: labelIcon(c.name, c.primary) }).addTo(map);
     });
 
-    // Auf den 25-km-Kreis zoomen, damit der Radius komplett sichtbar ist
+    // Auf den 25-km-Kreis zoomen — etwas näher heran, damit die
+    // Stadtteilbeschriftungen besser lesbar sind (Kreisrand darf
+    // dabei leicht beschnitten sein)
     map.fitBounds(radiusCircle.getBounds(), {
       animate: false,
       padding: [16, 16],
     });
+    map.setZoom(map.getZoom() + 1);
   }
 
   if (document.readyState === "complete") initMap();
