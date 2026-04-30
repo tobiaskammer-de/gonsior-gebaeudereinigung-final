@@ -1,36 +1,37 @@
 # Bildquellen & Lizenzen
 
-Alle eingebundenen Fotos stammen von **[Pexels](https://www.pexels.com)** und
-unterliegen der **[Pexels-Lizenz](https://www.pexels.com/license/)**.
+> ⚠️ **Wichtig:** Die aktuell eingebundenen Hero- und Leistungs-Fotos sind
+> **Adobe-Stock-Comps (Vorschau-Versionen mit Wasserzeichen)**. Diese sind
+> laut Adobes Lizenzbedingungen ausschließlich zur **Layout-Prüfung vor
+> dem Lizenzkauf** zulässig — nicht zur dauerhaften öffentlichen
+> Veröffentlichung. **Vor finalem Go-Live müssen die lizenzierten
+> Originaldateien gekauft und ausgetauscht werden.**
+>
+> Quelle: <https://stock.adobe.com/de/license-terms>
 
-Die Pexels-Lizenz erlaubt ausdrücklich:
+## Adobe-Stock-Comps (zum Tausch nach Lizenzkauf)
 
-- ✅ kostenlose Nutzung — auch **kommerziell**
-- ✅ Bearbeitung der Fotos
-- ✅ keine Namensnennung erforderlich (eine Quellenangabe ist aber willkommen)
-
-Verboten ist:
-
-- ❌ identifizierbare Personen oder Marken in einer für sie verletzenden Weise darzustellen
-- ❌ den Eindruck zu erwecken, eine abgebildete Person stehe für ein bestimmtes Produkt/eine Marke
-- ❌ den Wiederverkauf oder die Weiterverteilung der Originaldatei (z. B. auf einer Stockfoto-Plattform)
-
-> Quelle und Wortlaut der Lizenz: <https://www.pexels.com/license/>
-
-## Verwendete Bilder
-
-| Datei | Verwendung | Foto-Seite | Fotograf:in |
+| Datei | Verwendung | Adobe-Stock-ID | Status |
 |---|---|---|---|
-| `images/hero-glass-facade.jpg` | Hero-Bereich | <https://www.pexels.com/photo/building-with-clear-glass-panel-windows-1632035/> | Aleksandar Pasaric |
-| `images/glasreinigung.jpg` | Service-Tab „Glasreinigung" | <https://www.pexels.com/photo/man-cleaning-the-windows-6197111/> | Tima Miroshnichenko |
-| `images/unterhaltsreinigung.jpg` | Service-Tab „Unterhaltsreinigung" | <https://www.pexels.com/photo/person-using-a-vacuum-6195273/> | Tima Miroshnichenko |
-| `images/treppenhaus.jpg` | Service-Tab „Treppenhausreinigung" | <https://www.pexels.com/photo/staircase-with-railing-in-modern-apartment-building-5729629/> | Alfin Auzikri |
-| `images/sonderleistungen.jpg` | Service-Tab „Sonderleistungen" | <https://www.pexels.com/photo/cleaning-supplies-3616735/> | Karolina Grabowska / Kaboompics |
+| `images/hero.jpeg` | Hero | _siehe Hinweis unten_ | Comp — Lizenzkauf nötig |
+| `images/glas.jpeg` | Service-Tab „Glasreinigung" | _siehe Hinweis unten_ | Comp — Lizenzkauf nötig |
+| `images/buero.jpeg` | Service-Tab „Unterhaltsreinigung" | **AdobeStock_348074919** (Reinigung Bürofläche) | Comp — Lizenzkauf nötig |
+| `images/treppenhaus.jpeg` | Service-Tab „Treppenhausreinigung" | **AdobeStock_192004734** (Reinigungswagen Treppenhaus) | Comp — Lizenzkauf nötig |
+| `images/sonstiges.jpeg` | Service-Tab „Sonderleistungen" | **AdobeStock_196162735** (Hochdruckreinigung Außenbereich) | Comp — Lizenzkauf nötig |
 
-Die Originale wurden über die offizielle Pexels-CDN als komprimierte JPEGs
-(`?auto=compress&cs=tinysrgb&w=1400`) heruntergeladen und unverändert in
-diesem Repository abgelegt — abgesehen von der Größenoptimierung durch
-Pexels selbst.
+**Hinweis zu `hero.jpeg` und `glas.jpeg`:** Diese Dateien wurden vom
+Auftraggeber direkt in den `images/`-Ordner gelegt und stimmen nicht mit
+den im Chat geprüften Comps überein (anderer Hash). Die Adobe-Stock-IDs
+müssen vom Auftraggeber bestätigt werden — am einfachsten ablesbar an dem
+Wasserzeichen im Bild selbst (Format: `AdobeStock_<Zahl>`).
+
+### Workflow zum Austauschen nach Kauf
+
+1. Bild bei [Adobe Stock](https://stock.adobe.com) lizenzieren
+2. Originaldatei (ohne Wasserzeichen, in höherer Auflösung) herunterladen
+3. Unter gleichem Dateinamen im `images/`-Ordner speichern (überschreibt die Comp)
+4. Lizenzbeleg/Rechnung archivieren — Adobe verlangt im Streitfall Nachweis
+5. In dieser Datei den Status auf „lizenziert" ändern und das Kaufdatum eintragen
 
 ## Kein Stockfoto für „Manuel Gonsior"
 
@@ -39,7 +40,8 @@ Stockfoto-Datenbank. Stattdessen ist dort ein neutraler, klar als Platzhalter
 gekennzeichneter Bereich mit dem Hinweis **„Foto folgt · Manuel Gonsior"**.
 
 Grund: Eine Stockfoto-Person als Geschäftsinhaber darzustellen wäre
-irreführend und nicht von der Pexels-Lizenz gedeckt. Sobald ein echtes Foto
+irreführend und ist auch von Adobe-Stock-Lizenzen nicht gedeckt
+(„Sensitive Use" / „Editorial Use"-Klauseln). Sobald ein echtes Foto
 von Manuel Gonsior vorliegt, kann es als `images/manuel-gonsior.jpg`
 abgelegt und die Stelle in `index.html` (Sektion „ABOUT", Klasse
 `vb-about-card-photo`) gegen ein `<img>` getauscht werden — analog zu den
