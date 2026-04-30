@@ -298,17 +298,20 @@ h1, h2, h3, h4 {
   background: var(--gn-bg);
 }
 .vb-services-head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  margin-bottom: 64px;
-  gap: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 56px;
+  max-width: 760px;
 }
-.vb-services-head h2 { font-size: 72px; margin: 16px 0 0; }
+.vb-services-head h2 { font-size: 72px; margin: 8px 0 0; }
 .vb-services-head .lead {
-  max-width: 38ch;
-  font-size: 15px;
+  max-width: 60ch;
+  font-size: 16px;
   color: var(--gn-ink-soft);
+  margin: 0;
+  line-height: 1.55;
 }
 .vb-services-tabs {
   display: grid;
@@ -410,6 +413,19 @@ h1, h2, h3, h4 {
 .vb-process-head { margin-bottom: 56px; max-width: 720px; }
 .vb-process-head h2 { font-size: 64px; margin: 16px 0 16px; }
 .vb-process-head p { color: var(--gn-ink-soft); font-size: 16px; margin: 0; }
+/* Process Layout — Titel links (40 %) · Kreis rechts (60 %) */
+.vb-process-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 56px;
+  align-items: center;
+}
+.vb-process-head {
+  margin-bottom: 0;
+  max-width: none;
+}
+.vb-process-head h2 { font-size: 56px; }
+
 /* Journey — schwebende Kreis-Anordnung */
 .vb-journey-circle {
   position: relative;
@@ -445,6 +461,12 @@ h1, h2, h3, h4 {
 .vb-journey-step[data-pos="right"]  { top: 50%;  right: 0;   transform: translateY(-50%); }
 .vb-journey-step[data-pos="bottom"] { bottom: 0; left: 50%;  transform: translateX(-50%); }
 .vb-journey-step[data-pos="left"]   { top: 50%;  left: 0;    transform: translateY(-50%); }
+.vb-journey-step[data-pos="center"] {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  z-index: 2;
+}
 
 /* Idle-Float pro Position — leicht versetzte Timings für organisches Gefühl */
 .vb-journey-float {
@@ -474,6 +496,15 @@ h1, h2, h3, h4 {
 @keyframes float-d {
   0%, 100% { transform: translate(0, 0); }
   50%      { transform: translate(-7px, -3px); }
+}
+.vb-journey-step[data-pos="center"] .vb-journey-float {
+  animation-name: float-center;
+  animation-duration: 6s;
+  animation-delay: -3s;
+}
+@keyframes float-center {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(0, -3px); }
 }
 
 /* Karte: das eigentliche „Kärtchen" */
@@ -547,6 +578,54 @@ h1, h2, h3, h4 {
   transition: background 400ms ease, color 400ms ease, border-color 400ms ease;
 }
 
+/* CTA-Karte im Zentrum — Akzent-Grün, kompakt, Default schon „aktiviert" */
+.vb-journey-card--cta {
+  background: var(--gn-accent);
+  color: #fff;
+  border-color: var(--gn-accent);
+  padding: 22px 22px 20px;
+  gap: 8px;
+  box-shadow: 0 18px 40px -18px rgba(31, 61, 43, 0.45);
+}
+.vb-journey-card--cta .vb-journey-num {
+  color: rgba(255,255,255,0.72);
+  font-size: 9.5px;
+}
+.vb-journey-card--cta .vb-journey-title {
+  color: #fff;
+  font-size: 22px;
+  margin: 2px 0 4px;
+}
+.vb-journey-card--cta .vb-journey-desc {
+  color: rgba(255,255,255,0.85);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.vb-journey-cta-btn {
+  background: #fff;
+  color: var(--gn-accent);
+  padding: 9px 14px;
+  font-size: 13px;
+  margin-top: 6px;
+  align-self: stretch;
+  justify-content: center;
+}
+.vb-journey-cta-btn:hover {
+  background: rgba(255,255,255,0.92);
+  color: var(--gn-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -10px rgba(255,255,255,0.5);
+}
+.vb-journey-cta-phone {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  margin-top: 2px;
+}
+.vb-journey-cta-phone:hover { color: #fff; }
+
 /* Hover: Magnet-Fokus auf gehoverte Karte */
 .vb-journey-step:hover { z-index: 5; }
 .vb-journey-step:hover .vb-journey-card,
@@ -576,9 +655,10 @@ h1, h2, h3, h4 {
   border-color: rgba(255,255,255,0.25);
 }
 
-/* Andere Karten dimmen + leicht schrumpfen, wenn eine im Fokus ist */
-.vb-journey-circle:has(.vb-journey-step:hover) .vb-journey-step:not(:hover) .vb-journey-card,
-.vb-journey-circle:has(.vb-journey-step:focus-within) .vb-journey-step:not(:focus-within) .vb-journey-card {
+/* Andere Karten dimmen + leicht schrumpfen, wenn eine im Fokus ist —
+   die zentrale CTA-Karte bleibt aber immer voll sichtbar (Anker). */
+.vb-journey-circle:has(.vb-journey-step:hover) .vb-journey-step:not(:hover):not(.vb-journey-step--cta) .vb-journey-card,
+.vb-journey-circle:has(.vb-journey-step:focus-within) .vb-journey-step:not(:focus-within):not(.vb-journey-step--cta) .vb-journey-card {
   opacity: 0.4;
   transform: scale(0.94);
 }
@@ -1195,6 +1275,9 @@ h1, h2, h3, h4 {
   .vb-tab-panel ul { grid-template-columns: 1fr; }
   .vb-tab-panel-photo { min-height: 240px; }
 
+  .vb-process-layout { grid-template-columns: 1fr; gap: 32px; }
+  .vb-process-head h2 { font-size: 40px; }
+
   .vb-journey-circle {
     height: auto;
     max-width: 100%;
@@ -1203,6 +1286,10 @@ h1, h2, h3, h4 {
     gap: 20px;
     transform: none !important;
   }
+  .vb-journey-step--cta { width: 100% !important; }
+  .vb-journey-card--cta { padding: 28px 24px; }
+  .vb-journey-card--cta .vb-journey-title { font-size: 26px; }
+  .vb-journey-card--cta .vb-journey-desc { font-size: 14px; }
   .vb-journey-orbit { display: none; }
   .vb-journey-step,
   .vb-journey-step[data-pos] {
