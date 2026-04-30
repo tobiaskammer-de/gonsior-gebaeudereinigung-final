@@ -385,6 +385,19 @@ h1, h2, h3, h4 {
   align-self: stretch;
 }
 
+/* Hover-Crossfade beim Tab-Wechsel */
+.vb-tab-panel-content,
+.vb-tab-panel-photo .gn-photo__img,
+.vb-tab-panel-photo .gn-photo__label {
+  transition: opacity 160ms ease;
+  will-change: opacity;
+}
+.vb-tab-panel.is-fading .vb-tab-panel-content,
+.vb-tab-panel.is-fading .vb-tab-panel-photo .gn-photo__img,
+.vb-tab-panel.is-fading .vb-tab-panel-photo .gn-photo__label {
+  opacity: 0.35;
+}
+
 /* PROCESS */
 .vb-process {
   padding: 120px 64px;
@@ -475,6 +488,43 @@ h1, h2, h3, h4 {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gn-ink-muted);
+}
+
+/* Journey-CTA — schließt die Vorgehensweise mit Aktionsangebot */
+.vb-journey-cta {
+  grid-column: 1 / -1;
+  margin-top: 72px;
+  padding: 36px 40px;
+  background: var(--gn-bg-card);
+  border: 1px solid var(--gn-line);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+}
+.vb-journey-cta::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: 0;
+  width: 64px; height: 2px;
+  background: var(--gn-accent);
+}
+.vb-journey-cta-text .gn-eyebrow { color: var(--gn-accent); }
+.vb-journey-cta-text .gn-eyebrow::before { background: var(--gn-accent); }
+.vb-journey-cta-text p {
+  margin: 12px 0 0;
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--gn-ink);
+  max-width: 50ch;
+}
+.vb-journey-cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 /* TRUST */
@@ -959,6 +1009,14 @@ h1, h2, h3, h4 {
   .vb-journey-node svg { width: 44px; height: 44px; }
   .vb-journey-title { font-size: 26px; }
   .vb-journey-desc { max-width: 100%; }
+  .vb-journey-cta {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
+    margin-top: 48px;
+  }
+  .vb-journey-cta-text p { font-size: 22px; }
+  .vb-journey-cta-actions { justify-content: flex-start; }
 
   .vb-trust-head { flex-direction: column; align-items: flex-start; }
   .vb-trust-head h2 { font-size: 36px; }

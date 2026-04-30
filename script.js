@@ -38,6 +38,7 @@
     '<path d="M2 7 L6 11 L12 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>';
 
   const tabs = document.querySelectorAll(".vb-tab");
+  const panel = document.querySelector(".vb-tab-panel");
   const titleEl = document.querySelector("[data-panel-title]");
   const blurbEl = document.querySelector("[data-panel-blurb]");
   const itemsEl = document.querySelector("[data-panel-items]");
@@ -45,17 +46,16 @@
   const photoEl = document.querySelector("[data-panel-photo]");
   const imgEl = document.querySelector("[data-panel-img]");
 
-  function setTab(key) {
-    const idx = ORDER.indexOf(key);
-    const data = SERVICES[key];
-    if (!data) return;
+  // Vorladen, damit der Crossfade beim Hover ohne Verzögerung wirkt
+  Object.values(SERVICES).forEach((s) => {
+    if (s.img) { const i = new Image(); i.src = s.img; }
+  });
 
-    tabs.forEach((t) => {
-      const active = t.dataset.tab === key;
-      t.classList.toggle("active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
+  let currentTab = null;
+  let fadeTimer = null;
+  const FADE_MS = 160;
 
+  function applyTabContent(data, idx) {
     if (titleEl) titleEl.textContent = data.name;
     if (blurbEl) blurbEl.textContent = data.blurb;
     if (eyebrowEl) eyebrowEl.textContent = "Gewerk 0" + (idx + 1);
@@ -71,7 +71,42 @@
     }
   }
 
-  tabs.forEach((t) => t.addEventListener("click", () => setTab(t.dataset.tab)));
+  function setTab(key) {
+    if (currentTab === key) return;
+    const data = SERVICES[key];
+    if (!data) return;
+    const idx = ORDER.indexOf(key);
+    const isFirst = currentTab === null;
+    currentTab = key;
+
+    // Tab-Button-Status sofort umschalten — direktes visuelles Feedback
+    tabs.forEach((t) => {
+      const active = t.dataset.tab === key;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    if (isFirst || !panel) {
+      // Erste Initialisierung ohne Fade
+      applyTabContent(data, idx);
+      return;
+    }
+
+    // Sanfter Crossfade: kurz dimmen → tauschen → wieder hochblenden
+    if (fadeTimer) clearTimeout(fadeTimer);
+    panel.classList.add("is-fading");
+    fadeTimer = setTimeout(() => {
+      applyTabContent(data, idx);
+      panel.classList.remove("is-fading");
+    }, FADE_MS / 2);
+  }
+
+  // Hover öffnet das Feld; Klick als Fallback (Touch / Tastatur via :focus)
+  tabs.forEach((t) => {
+    t.addEventListener("mouseenter", () => setTab(t.dataset.tab));
+    t.addEventListener("focus", () => setTab(t.dataset.tab));
+    t.addEventListener("click", () => setTab(t.dataset.tab));
+  });
   if (tabs.length) setTab("glas");
 
   // ─── Service chips (contact form) ──────────────────────────────────────────
