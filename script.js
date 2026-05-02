@@ -7,7 +7,7 @@
       blurb: "Streifenfrei und transparent — innen wie außen.",
       items: ["Fenster & Rahmen", "Schaufenster & Vordächer", "Glasfassaden bis ca. 10 m Höhe", "Fensterbänke innen / außen"],
       img: "images/glas.jpeg",
-      alt: "Glasreinigung in Essen — Fensterputz an Mehrfamilienhaus",
+      alt: "Glasreinigung in Essen — streifenfreier Fensterabzieher auf Glasscheibe",
     },
     unterhalt: {
       name: "Unterhaltsreinigung",

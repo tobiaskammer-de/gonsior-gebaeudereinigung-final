@@ -1,37 +1,29 @@
 # Bildquellen & Lizenzen
 
-> ⚠️ **Wichtig:** Die aktuell eingebundenen Hero- und Leistungs-Fotos sind
-> **Adobe-Stock-Comps (Vorschau-Versionen mit Wasserzeichen)**. Diese sind
-> laut Adobes Lizenzbedingungen ausschließlich zur **Layout-Prüfung vor
-> dem Lizenzkauf** zulässig — nicht zur dauerhaften öffentlichen
-> Veröffentlichung. **Vor finalem Go-Live müssen die lizenzierten
-> Originaldateien gekauft und ausgetauscht werden.**
->
-> Quelle: <https://stock.adobe.com/de/license-terms>
+## Service-Fotos (Adobe Stock — lizenziert)
 
-## Adobe-Stock-Comps (zum Tausch nach Lizenzkauf)
+Vom Auftraggeber bei Adobe Stock gekauft, Quelldateien geliefert im
+Ordner `images/Neue Finale Fotos/`. Im Repo eingebunden in optimierter
+Form (max. 1600 px Kantenlänge, JPEG q78).
 
-| Datei | Verwendung | Adobe-Stock-ID | Status |
+| Datei | Verwendung | Quelle | Status |
 |---|---|---|---|
-| `images/hero.jpeg` | Hero | _siehe Hinweis unten_ | Comp — Lizenzkauf nötig |
-| `images/glas.jpeg` | Service-Tab „Glasreinigung" | _siehe Hinweis unten_ | Comp — Lizenzkauf nötig |
-| `images/buero.jpeg` | Service-Tab „Unterhaltsreinigung" | **AdobeStock_348074919** (Reinigung Bürofläche) | Comp — Lizenzkauf nötig |
-| `images/treppenhaus.jpeg` | Service-Tab „Treppenhausreinigung" | **AdobeStock_192004734** (Reinigungswagen Treppenhaus) | Comp — Lizenzkauf nötig |
-| `images/sonstiges.jpeg` | Service-Tab „Sonderleistungen" | **AdobeStock_196162735** (Hochdruckreinigung Außenbereich) | Comp — Lizenzkauf nötig |
+| `images/glas.jpeg` | Service-Tab „Glasreinigung" | Adobe Stock | ✅ lizenziert |
+| `images/buero.jpeg` | Service-Tab „Unterhaltsreinigung" | Adobe Stock | ✅ lizenziert |
+| `images/treppenhaus.jpeg` | Service-Tab „Treppenhausreinigung" | Adobe Stock | ✅ lizenziert |
+| `images/sonstiges.jpeg` | Service-Tab „Sonderleistungen" | Adobe Stock | ✅ lizenziert |
 
-**Hinweis zu `hero.jpeg` und `glas.jpeg`:** Diese Dateien wurden vom
-Auftraggeber direkt in den `images/`-Ordner gelegt und stimmen nicht mit
-den im Chat geprüften Comps überein (anderer Hash). Die Adobe-Stock-IDs
-müssen vom Auftraggeber bestätigt werden — am einfachsten ablesbar an dem
-Wasserzeichen im Bild selbst (Format: `AdobeStock_<Zahl>`).
+**Wichtig:** Lizenzbeleg/Rechnung archivieren — Adobe verlangt im
+Streitfall Nachweis. Adobe-Stock-IDs am besten in dieser Tabelle
+nachtragen, wenn du die Rechnungen zur Hand hast.
 
-### Workflow zum Austauschen nach Kauf
+## Hero-Foto
 
-1. Bild bei [Adobe Stock](https://stock.adobe.com) lizenzieren
-2. Originaldatei (ohne Wasserzeichen, in höherer Auflösung) herunterladen
-3. Unter gleichem Dateinamen im `images/`-Ordner speichern (überschreibt die Comp)
-4. Lizenzbeleg/Rechnung archivieren — Adobe verlangt im Streitfall Nachweis
-5. In dieser Datei den Status auf „lizenziert" ändern und das Kaufdatum eintragen
+| Datei | Verwendung | Quelle | Status |
+|---|---|---|---|
+| `images/hero.jpeg` | Hero | vom Auftraggeber bereitgestellt | ✅ |
+
+(Konvertiert aus `images/Neuer Hero.png` zu JPEG q78, 1983×793.)
 
 ## Foto „Manuel Gonsior"
 
