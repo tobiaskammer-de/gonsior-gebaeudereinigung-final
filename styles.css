@@ -244,7 +244,9 @@ h1, h2, h3, h4 {
   padding: 24px 64px;
   border-bottom: 1px solid var(--gn-line);
   background: var(--gn-bg-card);
-  position: sticky; top: 0; z-index: 5;
+  /* z-index muss über Leaflet (panes ≤ 650, controls 700-1000) liegen,
+     damit die Karte beim Scrollen unter dem Sticky-Menü verschwindet */
+  position: sticky; top: 0; z-index: 1100;
   gap: 32px;
 }
 .vb-logo {
@@ -253,7 +255,7 @@ h1, h2, h3, h4 {
   text-decoration: none;
   color: inherit;
   position: relative;
-  z-index: 6;
+  z-index: 1101;
   height: 34px;
 }
 .vb-logo img {
@@ -1310,6 +1312,11 @@ h1, h2, h3, h4 {
   min-height: 360px;
   border: 1px solid var(--gn-line);
   background: var(--gn-bg-soft);
+  /* Eigener Stacking-Context: kapselt Leaflets interne z-indices ein,
+     damit Tiles/Controls niemals über die Sticky-Nav rutschen */
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
 }
 /* Soften OSM tiles so they match the muted, classic palette */
 .vb-map .leaflet-tile-pane { filter: grayscale(0.55) contrast(0.95) brightness(1.02); }

@@ -245,7 +245,7 @@
 
     const map = L.map(el, {
       center: ESSEN_BORBECK,
-      zoom: 10,
+      zoom: 11,
       scrollWheelZoom: false,
       zoomControl: true,
       attributionControl: true,
@@ -257,9 +257,9 @@
         '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
     }).addTo(map);
 
-    // 25 km Service-Radius — deutlich sichtbar
+    // 15 km Service-Radius — deutlich sichtbar
     const radiusCircle = L.circle(ESSEN_BORBECK, {
-      radius: 25000,
+      radius: 15000,
       color: "#1f3d2b",
       weight: 2.5,
       opacity: 0.95,
@@ -269,11 +269,11 @@
       interactive: false,
     }).addTo(map);
 
-    // Beschriftung des Radius am nördlichen Kreisrand
-    L.marker([51.7006, 6.9711], {
+    // Beschriftung des Radius am nördlichen Kreisrand (ca. 15 km nördlich)
+    L.marker([51.6106, 6.9711], {
       icon: L.divIcon({
         className: "",
-        html: '<div class="gn-map-label gn-map-label--primary">25 km Einsatzradius</div>',
+        html: '<div class="gn-map-label gn-map-label--primary">15 km Einsatzradius</div>',
         iconSize: null,
         iconAnchor: [70, 12],
       }),
