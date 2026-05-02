@@ -1141,7 +1141,12 @@ h1, h2, h3, h4 {
   border: 1px solid rgba(255,255,255,0.15);
   padding: 40px;
 }
-.vb-about-card-photo { height: 320px; margin-bottom: 24px; }
+.vb-about-card-photo {
+  aspect-ratio: 5 / 4;
+  height: auto;
+  margin-bottom: 24px;
+}
+.vb-about-card-photo .gn-photo__img { object-position: center top; }
 .vb-about-card-name {
   font-family: 'Instrument Serif', serif;
   font-size: 32px;
