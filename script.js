@@ -7,28 +7,28 @@
       blurb: "Streifenfrei und transparent — innen wie außen.",
       items: ["Fenster & Rahmen", "Schaufenster & Vordächer", "Glasfassaden bis ca. 10 m Höhe", "Fensterbänke innen / außen"],
       img: "images/glas.jpeg",
-      alt: "Glasreinigung — professioneller Fensterputz",
+      alt: "Glasreinigung in Essen — Fensterputz an Mehrfamilienhaus",
     },
     unterhalt: {
       name: "Unterhaltsreinigung",
       blurb: "Regelmäßige Pflege für Wohnungen, Häuser und Büros.",
       items: ["Reinigung nach Hausfrauenart", "Grundreinigung", "Büro- & Praxisreinigung", "Nach Vereinbarung"],
       img: "images/buero.jpeg",
-      alt: "Unterhaltsreinigung — professionelle Büro- und Wohnungsreinigung",
+      alt: "Unterhaltsreinigung in Essen — Büro- und Wohnungsreinigung",
     },
     treppen: {
       name: "Treppenhausreinigung",
       blurb: "Vom Dach bis zum Keller — nach festem Turnus.",
       items: ["Wöchentlich", "14-tägig", "Inkl. Geländer & Briefkästen", "Individuell auf Ihren Bedarf zugeschnitten"],
       img: "images/treppenhaus.jpeg",
-      alt: "Treppenhausreinigung — Treppenhaus mit Reinigungswagen",
+      alt: "Treppenhausreinigung in Essen — Treppenhaus mit Reinigungswagen",
     },
     sonder: {
       name: "Sonderleistungen",
       blurb: "Auf Anfrage und je nach Bedarf — flexibel umgesetzt.",
       items: ["Terrassen & Balkone", "Hauseingänge, Einfahrten & Tiefgaragen", "Bauendreinigung", "Einzugs- & Auszugsreinigung"],
       img: "images/sonstiges.jpeg",
-      alt: "Sonderleistungen — Außenreinigung mit Hochdruckreiniger",
+      alt: "Sonderleistungen in Essen — Außenreinigung mit Hochdruckreiniger",
     },
   };
 
