@@ -33,19 +33,15 @@ Wasserzeichen im Bild selbst (Format: `AdobeStock_<Zahl>`).
 4. Lizenzbeleg/Rechnung archivieren — Adobe verlangt im Streitfall Nachweis
 5. In dieser Datei den Status auf „lizenziert" ändern und das Kaufdatum eintragen
 
-## Kein Stockfoto für „Manuel Gonsior"
+## Foto „Manuel Gonsior"
 
-In der Sektion „Über uns" steht **keine** abgebildete Person aus einer
-Stockfoto-Datenbank. Stattdessen ist dort ein neutraler, klar als Platzhalter
-gekennzeichneter Bereich mit dem Hinweis **„Foto folgt · Manuel Gonsior"**.
+Datei: `images/manuel.jpg` (aus `images/manuel.heic` zu JPEG q80, max
+1600 px konvertiert). Echtes Foto des Inhabers, vom Auftraggeber
+bereitgestellt — keine Stockfoto-Quelle. Verwendet in zwei Stellen
+auf `index.html`:
 
-Grund: Eine Stockfoto-Person als Geschäftsinhaber darzustellen wäre
-irreführend und ist auch von Adobe-Stock-Lizenzen nicht gedeckt
-(„Sensitive Use" / „Editorial Use"-Klauseln). Sobald ein echtes Foto
-von Manuel Gonsior vorliegt, kann es als `images/manuel-gonsior.jpg`
-abgelegt und die Stelle in `index.html` (Sektion „ABOUT", Klasse
-`vb-about-card-photo`) gegen ein `<img>` getauscht werden — analog zu den
-übrigen Photo-Containern.
+- Sektion „Über uns" (Klasse `.vb-about-card-photo`)
+- Sektion „Kontakt" (Klasse `.vb-contact-owner-portrait`)
 
 ## Karte: OpenStreetMap
 
