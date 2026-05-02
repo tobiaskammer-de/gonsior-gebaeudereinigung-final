@@ -1245,6 +1245,161 @@ h1, h2, h3, h4 {
   .vb-refs-card { animation: none !important; }
 }
 
+/* INSTAGRAM */
+.vb-insta {
+  padding: 120px 64px;
+  background: var(--gn-bg-card);
+  border-top: 1px solid var(--gn-line);
+}
+.vb-insta-head {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.vb-insta-head h2 {
+  font-size: 64px;
+  margin: 16px 0 0;
+}
+.vb-insta-lead {
+  color: var(--gn-ink-soft);
+  margin: 16px 0 0;
+}
+.vb-insta-carousel {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 24px;
+  margin: 0 -4px;
+  /* dezenter Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--gn-ink-muted) transparent;
+}
+.vb-insta-carousel::-webkit-scrollbar { height: 6px; }
+.vb-insta-carousel::-webkit-scrollbar-track { background: transparent; }
+.vb-insta-carousel::-webkit-scrollbar-thumb {
+  background: var(--gn-line);
+  border-radius: 3px;
+}
+.vb-insta-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  border: 1px solid var(--gn-line);
+  background: var(--gn-bg-soft);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 160ms ease, transform 160ms ease;
+  overflow: hidden;
+}
+.vb-insta-card:hover {
+  border-color: var(--gn-accent);
+  transform: translateY(-2px);
+}
+.vb-insta-card-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background: var(--gn-bg-soft);
+  overflow: hidden;
+}
+.vb-insta-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vb-insta-card-type {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--gn-ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.vb-insta-card-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.vb-insta-card-caption {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gn-ink);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.vb-insta-card-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gn-ink-muted);
+  margin-top: auto;
+}
+.vb-insta-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  border: 1px dashed var(--gn-line);
+  background: var(--gn-bg-soft);
+}
+.vb-insta-empty-inner {
+  text-align: center;
+  max-width: 420px;
+  padding: 32px;
+  color: var(--gn-ink-soft);
+}
+.vb-insta-empty-inner svg {
+  color: var(--gn-accent);
+  margin-bottom: 12px;
+}
+.vb-insta-empty-inner p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.vb-insta-foot {
+  margin-top: 32px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.vb-insta-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gn-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gn-line);
+  padding-bottom: 4px;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+.vb-insta-foot a:hover {
+  color: var(--gn-accent);
+  border-bottom-color: var(--gn-accent);
+}
+
 /* AREA */
 .vb-area {
   padding: 120px 64px;
@@ -1756,7 +1911,7 @@ h1, h2, h3, h4 {
 
 /* RESPONSIVE */
 @media (max-width: 1100px) {
-  .vb-top, .vb-nav, .vb-services, .vb-process, .vb-trust, .vb-about, .vb-refs, .vb-area, .vb-contact, .vb-footer {
+  .vb-top, .vb-nav, .vb-services, .vb-process, .vb-trust, .vb-about, .vb-refs, .vb-insta, .vb-area, .vb-contact, .vb-footer {
     padding-left: 32px; padding-right: 32px;
   }
   .vb-hero-text { padding: 64px 32px 48px; }
@@ -1764,7 +1919,7 @@ h1, h2, h3, h4 {
   .vb-hero-stats { padding: 36px 32px; }
   .vb-hero-stat .num { font-size: 44px; }
   .vb-services-head h2 { font-size: 56px; }
-  .vb-trust-head h2, .vb-about h2, .vb-refs-head h2, .vb-area h2, .vb-contact h2, .vb-process-head h2 { font-size: 48px; }
+  .vb-trust-head h2, .vb-about h2, .vb-refs-head h2, .vb-insta-head h2, .vb-area h2, .vb-contact h2, .vb-process-head h2 { font-size: 48px; }
 }
 
 @media (max-width: 880px) {
@@ -1818,11 +1973,13 @@ h1, h2, h3, h4 {
   .vb-hero-stat { padding: 14px 0; gap: 18px; }
   .vb-hero-stat .num { font-size: 38px; }
 
-  .vb-services, .vb-process, .vb-trust, .vb-about, .vb-refs, .vb-area, .vb-contact, .vb-footer {
+  .vb-services, .vb-process, .vb-trust, .vb-about, .vb-refs, .vb-insta, .vb-area, .vb-contact, .vb-footer {
     padding: 72px 24px;
   }
   .vb-services-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
   .vb-services-head h2 { font-size: 40px; }
+  .vb-insta-head h2 { font-size: 40px; }
+  .vb-insta-carousel { grid-auto-columns: 78%; gap: 14px; }
 
   .vb-services-tabs { grid-template-columns: 1fr 1fr; }
   .vb-tab { border-right: 1px solid var(--gn-line); border-bottom: 1px solid var(--gn-line); }

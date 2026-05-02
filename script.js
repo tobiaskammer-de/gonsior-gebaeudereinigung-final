@@ -320,6 +320,89 @@
   if (document.readyState === "complete") initMap();
   else window.addEventListener("load", initMap);
 
+  // ─── Instagram-Feed ─────────────────────────────────────────────────────────
+  // Liest data/instagram.json und rendert die Posts als Karussell.
+  // Datei wird vom GitHub-Action-Workflow täglich gepflegt; solange leer,
+  // bleibt der "Folge uns"-Fallback im HTML stehen.
+  function initInstagram() {
+    const carousel = document.querySelector("[data-insta-carousel]");
+    const empty = document.querySelector("[data-insta-empty]");
+    const foot = document.querySelector("[data-insta-foot]");
+    const section = document.getElementById("instagram");
+    if (!carousel || !section) return;
+
+    fetch("data/instagram.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        const posts = Array.isArray(data && data.posts) ? data.posts : [];
+        if (!posts.length) return; // Fallback bleibt sichtbar
+
+        if (empty) empty.remove();
+        section.removeAttribute("data-empty");
+        if (foot) foot.removeAttribute("hidden");
+
+        const dateFmt = new Intl.DateTimeFormat("de-DE", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+
+        const frag = document.createDocumentFragment();
+        posts.forEach((p) => {
+          const a = document.createElement("a");
+          a.className = "vb-insta-card";
+          a.href = p.permalink;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+
+          const media = document.createElement("div");
+          media.className = "vb-insta-card-media";
+          const img = document.createElement("img");
+          img.src = p.image;
+          img.alt = (p.caption || "Instagram-Post").slice(0, 140);
+          img.loading = "lazy";
+          img.decoding = "async";
+          media.appendChild(img);
+
+          if (p.type && p.type !== "IMAGE") {
+            const tag = document.createElement("span");
+            tag.className = "vb-insta-card-type";
+            tag.textContent = p.type === "VIDEO" ? "Video" : "Album";
+            media.appendChild(tag);
+          }
+
+          const body = document.createElement("div");
+          body.className = "vb-insta-card-body";
+          if (p.caption) {
+            const cap = document.createElement("p");
+            cap.className = "vb-insta-card-caption";
+            cap.textContent = p.caption;
+            body.appendChild(cap);
+          }
+          if (p.timestamp) {
+            const meta = document.createElement("div");
+            meta.className = "vb-insta-card-meta";
+            try {
+              meta.textContent = dateFmt.format(new Date(p.timestamp));
+            } catch (e) {
+              meta.textContent = "";
+            }
+            body.appendChild(meta);
+          }
+
+          a.appendChild(media);
+          a.appendChild(body);
+          frag.appendChild(a);
+        });
+        carousel.innerHTML = "";
+        carousel.appendChild(frag);
+      })
+      .catch(() => {
+        // Im Fehlerfall: Fallback bleibt unverändert sichtbar
+      });
+  }
+  initInstagram();
+
   // ─── Contact form: AJAX-Versand via Formsubmit ─────────────────────────────
   // Versendet das Formular automatisch als E-Mail an dienstleistung-gonsior@web.de
   // ohne dass sich der Mail-Client des Nutzers öffnet.
