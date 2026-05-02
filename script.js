@@ -19,14 +19,14 @@
     treppen: {
       name: "Treppenhausreinigung",
       blurb: "Vom Dach bis zum Keller — nach festem Turnus.",
-      items: ["Wöchentlich", "14-tägig", "Monatlich", "Inkl. Geländer & Briefkästen"],
+      items: ["Wöchentlich", "14-tägig", "Inkl. Geländer & Briefkästen", "Individuell auf Ihren Bedarf zugeschnitten"],
       img: "images/treppenhaus.jpeg",
       alt: "Treppenhausreinigung — Treppenhaus mit Reinigungswagen",
     },
     sonder: {
       name: "Sonderleistungen",
       blurb: "Auf Anfrage und je nach Bedarf — flexibel umgesetzt.",
-      items: ["Terrassen & Balkone", "Bauendreinigung", "Einzugs- & Auszugsreinigung", "Individuelle Aufträge"],
+      items: ["Terrassen & Balkone", "Hauseingänge, Einfahrten & Tiefgaragen", "Bauendreinigung", "Einzugs- & Auszugsreinigung"],
       img: "images/sonstiges.jpeg",
       alt: "Sonderleistungen — Außenreinigung mit Hochdruckreiniger",
     },
