@@ -317,8 +317,99 @@
     map.setZoom(map.getZoom() + 1);
   }
 
-  if (document.readyState === "complete") initMap();
-  else window.addEventListener("load", initMap);
+  // ─── Consent-System (Drittanbieter-Inhalte erst nach Klick) ─────────────────
+  // Speichert die Einwilligung pro Service in localStorage. Inline-Head-Script
+  // in index.html liest die Werte vor Render und versteckt entsprechende Gates,
+  // damit Stammbesucher kein Flackern sehen.
+  const CONSENT_KEY = "gn-consent-v1";
+
+  function getConsent() {
+    try {
+      const v = JSON.parse(localStorage.getItem(CONSENT_KEY) || "[]");
+      return Array.isArray(v) ? v : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveConsent(service) {
+    const c = getConsent();
+    if (c.indexOf(service) === -1) c.push(service);
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(c));
+    } catch (e) {
+      /* private mode → consent gilt nur für aktuelle Session */
+    }
+    document.documentElement.setAttribute("data-consent-" + service, "");
+  }
+
+  // ─── Loader: Elfsight Instagram Feed ─────────────────────────────────
+  let elfsightLoaded = false;
+  function loadElfsight() {
+    if (elfsightLoaded) return;
+    elfsightLoaded = true;
+    const host = document.querySelector('[data-consent-host="elfsight"]');
+    if (!host) return;
+    host.innerHTML = "";
+    const div = document.createElement("div");
+    div.className = "elfsight-app-227175ea-2ab7-4c8a-b294-4c328d7ec36c";
+    div.setAttribute("data-elfsight-app-lazy", "");
+    host.appendChild(div);
+    const s = document.createElement("script");
+    s.src = "https://static.elfsight.com/platform/platform.js";
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  // ─── Loader: OpenStreetMap-Karte (mit Leaflet, dynamisch) ────────────
+  let osmLoaded = false;
+  function loadOsmMap() {
+    if (osmLoaded) return;
+    osmLoaded = true;
+    const host = document.querySelector('[data-consent-host="osm"]');
+    if (!host) return;
+    host.innerHTML = "";
+    const mapEl = document.createElement("div");
+    mapEl.id = "map";
+    mapEl.style.width = "100%";
+    mapEl.style.height = "100%";
+    mapEl.setAttribute("role", "img");
+    mapEl.setAttribute("aria-label", "Karte des Einsatzgebiets — 15 km Radius um Essen-Borbeck");
+    host.appendChild(mapEl);
+
+    // Leaflet CSS
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    css.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+    css.crossOrigin = "";
+    document.head.appendChild(css);
+
+    // Leaflet JS (mit SRI), bei load → initMap
+    const js = document.createElement("script");
+    js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    js.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+    js.crossOrigin = "";
+    js.onload = function () { initMap(); };
+    document.body.appendChild(js);
+  }
+
+  // ─── Init: bereits zugestimmte Services autoladen, Buttons verdrahten ───
+  function initConsent() {
+    const c = getConsent();
+    if (c.indexOf("elfsight") !== -1) loadElfsight();
+    if (c.indexOf("osm") !== -1) loadOsmMap();
+
+    document.querySelectorAll("[data-consent-load]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const service = btn.getAttribute("data-consent-load");
+        saveConsent(service);
+        if (service === "elfsight") loadElfsight();
+        else if (service === "osm") loadOsmMap();
+      });
+    });
+  }
+  initConsent();
 
   // ─── Contact form: AJAX-Versand via Formsubmit ─────────────────────────────
   // Versendet das Formular automatisch als E-Mail an dienstleistung-gonsior@web.de
