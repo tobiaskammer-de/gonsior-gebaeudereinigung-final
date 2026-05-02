@@ -4,7 +4,7 @@ Inhabergeführte Gebäudereinigung in Essen — Glas-, Unterhalts- und
 Treppenhausreinigung sowie Sonderleistungen für Hausverwaltungen,
 Gewerbe und Privatkunden im westlichen Ruhrgebiet.
 
-**Live:** https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/
+**Live:** https://www.gonsior-gebaeudereinigung.com/
 
 ## Struktur
 

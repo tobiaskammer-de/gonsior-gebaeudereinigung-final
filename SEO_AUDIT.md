@@ -1,6 +1,6 @@
 # SEO-Audit · Gonsior Gebäudereinigung
 
-Stand: 2026-05-02 · Live: https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/
+Stand: 2026-05-02 · Live: https://www.gonsior-gebaeudereinigung.com/
 
 Bewertet wird der One-Pager (`index.html`) plus Datenschutz/Impressum. Fokus: **Local SEO** für Essen + westliches Ruhrgebiet.
 
@@ -52,8 +52,8 @@ WhatsApp-, Facebook-, LinkedIn-Previews zeigen aktuell weder Bild noch Beschreib
 <meta property="og:site_name" content="Gonsior Gebäudereinigung" />
 <meta property="og:title" content="Gonsior Gebäudereinigung Essen — inhabergeführt seit 2021" />
 <meta property="og:description" content="Glas-, Unterhalts-, Treppenhaus-, Tiefgaragen- und Steinreinigung in Essen und im westlichen Ruhrgebiet." />
-<meta property="og:url" content="https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/" />
-<meta property="og:image" content="https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/images/hero.jpeg" />
+<meta property="og:url" content="https://www.gonsior-gebaeudereinigung.com/" />
+<meta property="og:image" content="https://www.gonsior-gebaeudereinigung.com/images/hero.jpeg" />
 <meta property="og:image:width" content="1000" />
 <meta property="og:image:height" content="667" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +63,7 @@ WhatsApp-, Facebook-, LinkedIn-Previews zeigen aktuell weder Bild noch Beschreib
 Verhindert, dass GitHub-Pages-Default-URL und ggf. eigene Domain als Duplicate Content gewertet werden.
 
 ```html
-<link rel="canonical" href="https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/" />
+<link rel="canonical" href="https://www.gonsior-gebaeudereinigung.com/" />
 ```
 
 (Falls bald eigene Domain wie `gonsior-gebaeudereinigung.de` kommt — dann auf die zeigen lassen.)
@@ -116,8 +116,8 @@ Sind als „Sprungmarken" für SEO neutral; mit klaren Anchor-Texten ist's gut.
   "@context": "https://schema.org",
   "@type": "CleaningService",
   "name": "Gonsior Gebäudereinigung",
-  "image": "https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/images/hero.jpeg",
-  "url": "https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/",
+  "image": "https://www.gonsior-gebaeudereinigung.com/images/hero.jpeg",
+  "url": "https://www.gonsior-gebaeudereinigung.com/",
   "telephone": "+49-1522-9149388",
   "email": "dienstleistung-gonsior@web.de",
   "priceRange": "€€",
@@ -170,7 +170,7 @@ Sind als „Sprungmarken" für SEO neutral; mit klaren Anchor-Texten ist's gut.
 User-agent: *
 Allow: /
 
-Sitemap: https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/sitemap.xml
+Sitemap: https://www.gonsior-gebaeudereinigung.com/sitemap.xml
 ```
 
 ### `sitemap.xml` (Root)
@@ -179,18 +179,18 @@ Sitemap: https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/sitem
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/</loc>
+    <loc>https://www.gonsior-gebaeudereinigung.com/</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/impressum.html</loc>
+    <loc>https://www.gonsior-gebaeudereinigung.com/impressum.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/datenschutz.html</loc>
+    <loc>https://www.gonsior-gebaeudereinigung.com/datenschutz.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

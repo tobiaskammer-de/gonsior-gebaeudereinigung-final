@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tobiaskammer-de.github.io/gonsior-gebaeudereinigung-final/sitemap.xml
+Sitemap: https://www.gonsior-gebaeudereinigung.com/sitemap.xml
