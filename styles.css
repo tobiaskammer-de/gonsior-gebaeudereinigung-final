@@ -1171,6 +1171,33 @@ h1, h2, h3, h4 {
 .vb-about-meta-item {
   display: grid; grid-template-columns: 16px 1fr; gap: 12px; align-items: center;
 }
+.vb-about-card-seal {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.vb-about-card-seal img {
+  width: 160px;
+  height: auto;
+  display: block;
+  /* Magenta-Logo auf dunklem Hintergrund leicht "framen" */
+  background: rgba(255,255,255,0.04);
+  padding: 6px 8px;
+  border-radius: 2px;
+}
+.vb-about-card-seal-caption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.35;
+  max-width: 12ch;
+}
 
 /* REFERENCES */
 .vb-refs {
@@ -1654,6 +1681,27 @@ html[data-consent-osm] [data-consent-gate="osm"] { display: none; }
   opacity: 0.92;
 }
 .vb-footer-brand p { font-size: 14px; line-height: 1.6; max-width: 32ch; }
+.vb-footer-seal {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.vb-footer-seal img {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+.vb-footer-seal span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.35;
+  max-width: 12ch;
+}
 .vb-footer-bottom {
   padding-top: 24px;
   display: flex; justify-content: space-between;
