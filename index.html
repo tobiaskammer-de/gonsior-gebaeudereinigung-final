@@ -487,13 +487,9 @@
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
 
           <div class="vb-review-form-row">
-            <label class="gn-label" for="review-name">Ihr Name</label>
-            <input class="gn-input" type="text" id="review-name" name="name" required maxlength="80" autocomplete="name" placeholder="z. B. Beate Beckmann" />
-          </div>
-
-          <div class="vb-review-form-row">
-            <label class="gn-label" for="review-role">Rolle (optional)</label>
-            <input class="gn-input" type="text" id="review-role" name="rolle" maxlength="80" placeholder="z. B. Privateigentümerin · Essen-Frohnhausen" />
+            <label class="gn-label" for="review-name">Ihre Initialen</label>
+            <input class="gn-input" type="text" id="review-name" name="name" required maxlength="10" pattern="[A-Za-zÄÖÜäöüß]\.\s?[A-Za-zÄÖÜäöüß]?\.?" placeholder="z. B. B. B." />
+            <div class="vb-review-counter">Aus Datenschutzgründen werden nur Initialen veröffentlicht.</div>
           </div>
 
           <div class="vb-review-form-row">
