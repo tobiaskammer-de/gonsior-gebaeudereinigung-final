@@ -1,10 +1,11 @@
 {
-  "_note": "Beispieldaten — vor öffentlichem Bewerben durch echte Bewertungen ersetzen. Neueste oben (timestamp absteigend). Manuel bekommt eingehende Bewertungen per E-Mail über Formsubmit; bei Freigabe wird die neue Bewertung als oberster Eintrag hier eingefügt. Namen nur als Initialen (Datenschutz).",
+  "_note": "Beispieldaten — vor öffentlichem Bewerben durch echte Bewertungen ersetzen. Neueste oben (timestamp absteigend). Manuel bekommt eingehende Bewertungen per E-Mail über Formsubmit; bei Freigabe wird die neue Bewertung als oberster Eintrag hier eingefügt. Anzeigeformat: Initialen + ggf. Stadt (z. B. 'B. B., Mülheim').",
   "updated": "2026-05-03",
   "reviews": [
     {
       "id": "rev-2026-05-03-1",
       "name": "M. S.",
+      "city": "Essen",
       "stars": 4,
       "text": "Wir reinigen seit Anfang 2025 mit Gonsior. Termine wurden nie vergessen, Kommunikation läuft direkt mit Manuel — keine Callcenter-Schleifen. Empfehlen wir gerne weiter.",
       "timestamp": "2026-04-28"
@@ -12,6 +13,7 @@
     {
       "id": "rev-2026-04-15-1",
       "name": "B. B.",
+      "city": "Mülheim",
       "stars": 5,
       "text": "Endlich ein Reinigungsbetrieb, bei dem ich direkt mit dem Inhaber spreche. Treppenhaus 14-tägig, immer sauber, bei Sonderwünschen wird mitgedacht. Genau so muss das sein.",
       "timestamp": "2026-04-15"
@@ -19,6 +21,7 @@
     {
       "id": "rev-2026-03-22-1",
       "name": "P. K.",
+      "city": "Oberhausen",
       "stars": 5,
       "text": "Manuel betreut drei unserer Häuser seit zwei Jahren — pünktlich, sauber dokumentiert, kein Hin und Her. Genau das, was wir in der Verwaltung brauchen.",
       "timestamp": "2026-03-22"

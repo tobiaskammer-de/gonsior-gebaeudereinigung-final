@@ -458,14 +458,9 @@
           author.className = "vb-review-author";
           const name = document.createElement("span");
           name.className = "vb-review-author-name";
-          name.textContent = r.name || "Anonym";
+          const initials = r.name || "Anonym";
+          name.textContent = r.city ? initials + ", " + r.city : initials;
           author.appendChild(name);
-          if (r.role) {
-            const role = document.createElement("span");
-            role.className = "vb-review-author-role";
-            role.textContent = r.role;
-            author.appendChild(role);
-          }
 
           card.appendChild(bubble);
           card.appendChild(author);
