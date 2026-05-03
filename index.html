@@ -146,6 +146,7 @@
       <a href="#leistungen">Leistungen</a>
       <a href="#prozess">Vorgehensweise</a>
       <a href="#ueber">Über uns</a>
+      <a href="#bewertungen">Bewertungen</a>
       <a href="#instagram">Instagram</a>
       <a href="#einsatz">Einsatzgebiet</a>
       <a href="#kontakt">Kontakt</a>
@@ -431,6 +432,103 @@
         <div class="vb-about-card-seal" aria-label="Mitglied der Innung — DAS HANDWERK">
           <img src="images/handwerk-siegel.png" alt="DAS HANDWERK — Die Wirtschaftsmacht. Von nebenan." width="160" height="40" loading="lazy" decoding="async" />
           <span class="vb-about-card-seal-caption">Mitglied der Innung</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEWERTUNGEN / TESTIMONIALS -->
+  <section class="vb-reviews" id="bewertungen">
+    <div class="gn-container">
+      <div class="vb-reviews-head">
+        <span class="gn-eyebrow">Was Kunden sagen</span>
+        <h2>Direkt aus dem Auftragsalltag.</h2>
+        <p class="vb-reviews-lead">
+          Echte Stimmen von Hausverwaltungen, Praxen und Privateigentümern aus
+          dem Einsatzgebiet. Neueste oben — eigene Bewertung gerne unten ergänzen.
+        </p>
+      </div>
+
+      <div class="vb-reviews-grid" data-reviews-grid>
+        <!-- Wird von script.js aus data/reviews.json befüllt.
+             Falls JS deaktiviert ist, bleibt der Fallback unten sichtbar. -->
+        <noscript>
+          <div class="vb-review-fallback">Bewertungen erfordern aktiviertes JavaScript.</div>
+        </noscript>
+      </div>
+
+      <div class="vb-reviews-actions">
+        <button type="button" class="gn-btn gn-btn--primary" data-reviews-open>
+          Eigene Bewertung abgeben
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7 L12 7 M8 3 L12 7 L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </button>
+        <p class="vb-reviews-note">
+          Wird vor Veröffentlichung gesichtet — Spam und Beleidigungen werden nicht freigegeben.
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal für neue Bewertungen -->
+    <div class="vb-review-modal" data-reviews-modal hidden role="dialog" aria-modal="true" aria-labelledby="vb-review-modal-title">
+      <div class="vb-review-modal-backdrop" data-reviews-close></div>
+      <div class="vb-review-modal-card" role="document">
+        <button type="button" class="vb-review-modal-close" data-reviews-close aria-label="Dialog schließen">×</button>
+        <h3 id="vb-review-modal-title">Eigene Bewertung abgeben</h3>
+        <p class="vb-review-modal-intro">
+          Vielen Dank fürs Mitmachen. Ihre Bewertung wird nach kurzer Sichtung freigegeben.
+        </p>
+
+        <form class="vb-review-form" id="review-form" action="https://formsubmit.co/ajax/dienstleistung-gonsior@web.de" method="post" novalidate>
+          <input type="hidden" name="_subject" value="Neue Bewertung über die Webseite" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+
+          <div class="vb-review-form-row">
+            <label class="gn-label" for="review-name">Ihr Name</label>
+            <input class="gn-input" type="text" id="review-name" name="name" required maxlength="80" autocomplete="name" placeholder="z. B. Beate Beckmann" />
+          </div>
+
+          <div class="vb-review-form-row">
+            <label class="gn-label" for="review-role">Rolle (optional)</label>
+            <input class="gn-input" type="text" id="review-role" name="rolle" maxlength="80" placeholder="z. B. Privateigentümerin · Essen-Frohnhausen" />
+          </div>
+
+          <div class="vb-review-form-row">
+            <label class="gn-label">Sternebewertung</label>
+            <div class="vb-review-stars-input" data-review-stars role="radiogroup" aria-label="Sternebewertung">
+              <button type="button" class="vb-review-star-btn" data-star="1" aria-label="1 Stern">★</button>
+              <button type="button" class="vb-review-star-btn" data-star="2" aria-label="2 Sterne">★</button>
+              <button type="button" class="vb-review-star-btn" data-star="3" aria-label="3 Sterne">★</button>
+              <button type="button" class="vb-review-star-btn" data-star="4" aria-label="4 Sterne">★</button>
+              <button type="button" class="vb-review-star-btn" data-star="5" aria-label="5 Sterne">★</button>
+            </div>
+            <input type="hidden" name="sterne" value="" data-review-stars-value required />
+          </div>
+
+          <div class="vb-review-form-row">
+            <label class="gn-label" for="review-text">Ihre Bewertung</label>
+            <textarea class="gn-textarea" id="review-text" name="bewertung" rows="5" required minlength="20" maxlength="600" placeholder="Was ist Ihnen besonders aufgefallen?"></textarea>
+            <div class="vb-review-counter" data-review-counter>0 / 600 Zeichen</div>
+          </div>
+
+          <div class="vb-review-form-actions">
+            <button type="submit" class="gn-btn gn-btn--primary vb-review-submit">
+              Bewertung absenden
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7 L12 7 M8 3 L12 7 L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+              </svg>
+            </button>
+            <button type="button" class="gn-btn gn-btn--ghost" data-reviews-close>Abbrechen</button>
+          </div>
+        </form>
+
+        <div class="vb-review-thanks" data-review-thanks hidden>
+          <h4>Danke für Ihre Bewertung!</h4>
+          <p>Wir prüfen sie kurz und schalten sie bei nächster Gelegenheit frei.</p>
+          <button type="button" class="gn-btn gn-btn--ghost" data-reviews-close>Schließen</button>
         </div>
       </div>
     </div>

@@ -411,6 +411,189 @@
   }
   initConsent();
 
+  // ─── Bewertungen: Cards rendern + Modal + Form ──────────────────────────────
+  // Cards kommen aus data/reviews.json (Manuel pflegt die Datei nach
+  // E-Mail-Eingang). Neueste oben — sortiert nach timestamp absteigend.
+  const reviewsGrid = document.querySelector("[data-reviews-grid]");
+  const reviewsModal = document.querySelector("[data-reviews-modal]");
+
+  function buildStarsRow(count) {
+    const filled = Math.max(0, Math.min(5, parseInt(count, 10) || 0));
+    let html = '<span class="vb-review-stars" aria-label="' + filled + ' von 5 Sternen">';
+    for (let i = 1; i <= 5; i++) {
+      html += '<span class="' + (i <= filled ? "filled" : "empty") + '" aria-hidden="true">★</span>';
+    }
+    html += '</span>';
+    return html;
+  }
+
+  function renderReviews() {
+    if (!reviewsGrid) return;
+    fetch("data/reviews.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        const list = (data && Array.isArray(data.reviews)) ? data.reviews.slice() : [];
+        if (!list.length) return;
+        // Neueste zuerst (timestamp absteigend; Fallback auf Originalreihenfolge)
+        list.sort(function (a, b) {
+          const ta = a && a.timestamp ? a.timestamp : "";
+          const tb = b && b.timestamp ? b.timestamp : "";
+          return tb.localeCompare(ta);
+        });
+        const frag = document.createDocumentFragment();
+        list.forEach(function (r) {
+          const card = document.createElement("article");
+          card.className = "vb-review-card";
+
+          const bubble = document.createElement("div");
+          bubble.className = "vb-review-bubble";
+          bubble.innerHTML = buildStarsRow(r.stars);
+
+          const text = document.createElement("p");
+          text.className = "vb-review-text";
+          text.textContent = r.text || "";
+          bubble.appendChild(text);
+
+          const author = document.createElement("div");
+          author.className = "vb-review-author";
+          const name = document.createElement("span");
+          name.className = "vb-review-author-name";
+          name.textContent = r.name || "Anonym";
+          author.appendChild(name);
+          if (r.role) {
+            const role = document.createElement("span");
+            role.className = "vb-review-author-role";
+            role.textContent = r.role;
+            author.appendChild(role);
+          }
+
+          card.appendChild(bubble);
+          card.appendChild(author);
+          frag.appendChild(card);
+        });
+        reviewsGrid.innerHTML = "";
+        reviewsGrid.appendChild(frag);
+      })
+      .catch(function () { /* still: Fallback bleibt */ });
+  }
+  renderReviews();
+
+  // ─── Modal: open / close + Star-Widget + Submit ─────────────────────────────
+  function openModal() {
+    if (!reviewsModal) return;
+    reviewsModal.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+    // Fokus auf erstes Eingabefeld
+    const firstInput = reviewsModal.querySelector("input[name='name']");
+    if (firstInput) setTimeout(function () { firstInput.focus(); }, 50);
+  }
+  function closeModal() {
+    if (!reviewsModal) return;
+    reviewsModal.setAttribute("hidden", "");
+    document.body.style.overflow = "";
+  }
+  document.querySelectorAll("[data-reviews-open]").forEach(function (btn) {
+    btn.addEventListener("click", openModal);
+  });
+  document.querySelectorAll("[data-reviews-close]").forEach(function (btn) {
+    btn.addEventListener("click", closeModal);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && reviewsModal && !reviewsModal.hasAttribute("hidden")) closeModal();
+  });
+
+  // Star-Widget: 1-5 Sterne klickbar, Pflichtfeld via hidden input
+  const starButtons = document.querySelectorAll(".vb-review-star-btn");
+  const starsValueInput = document.querySelector("[data-review-stars-value]");
+  function setStars(n) {
+    starButtons.forEach(function (b) {
+      const v = parseInt(b.getAttribute("data-star"), 10);
+      b.classList.toggle("is-active", v <= n);
+    });
+    if (starsValueInput) starsValueInput.value = String(n);
+  }
+  starButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      const v = parseInt(b.getAttribute("data-star"), 10);
+      setStars(v);
+    });
+    b.addEventListener("mouseenter", function () {
+      const v = parseInt(b.getAttribute("data-star"), 10);
+      starButtons.forEach(function (other) {
+        const ov = parseInt(other.getAttribute("data-star"), 10);
+        other.classList.toggle("is-active", ov <= v);
+      });
+    });
+  });
+  const starsRow = document.querySelector("[data-review-stars]");
+  if (starsRow) {
+    starsRow.addEventListener("mouseleave", function () {
+      const current = starsValueInput ? parseInt(starsValueInput.value, 10) || 0 : 0;
+      setStars(current);
+    });
+  }
+
+  // Zeichen-Counter für Bewertungstext
+  const reviewText = document.getElementById("review-text");
+  const reviewCounter = document.querySelector("[data-review-counter]");
+  if (reviewText && reviewCounter) {
+    reviewText.addEventListener("input", function () {
+      reviewCounter.textContent = reviewText.value.length + " / 600 Zeichen";
+    });
+  }
+
+  // Submit: AJAX an Formsubmit (gleicher Provider wie Kontaktformular)
+  const reviewForm = document.getElementById("review-form");
+  if (reviewForm) {
+    const submitBtn = reviewForm.querySelector(".vb-review-submit");
+    const thanksBox = document.querySelector("[data-review-thanks]");
+
+    function showReviewError(msg) {
+      let err = reviewForm.querySelector(".vb-review-form-error");
+      if (!err) {
+        err = document.createElement("p");
+        err.className = "vb-review-form-error";
+        reviewForm.insertBefore(err, reviewForm.firstChild);
+      }
+      err.textContent = msg;
+    }
+
+    reviewForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      // Validierung Sterne (HTML-required reicht nicht, da hidden)
+      if (!starsValueInput.value) {
+        showReviewError("Bitte vergeben Sie eine Sternebewertung.");
+        return;
+      }
+      if (!reviewForm.checkValidity()) {
+        reviewForm.reportValidity();
+        return;
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Wird gesendet …";
+      }
+      try {
+        const fd = new FormData(reviewForm);
+        const res = await fetch(reviewForm.action, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        // Erfolg: Form ausblenden, Danke-Box zeigen
+        reviewForm.style.display = "none";
+        if (thanksBox) thanksBox.removeAttribute("hidden");
+      } catch (err) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Bewertung absenden <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7 L12 7 M8 3 L12 7 L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>';
+        }
+        showReviewError("Senden fehlgeschlagen. Bitte erneut versuchen oder direkt per E-Mail an dienstleistung-gonsior@web.de.");
+      }
+    });
+  }
+
   // ─── Contact form: AJAX-Versand via Formsubmit ─────────────────────────────
   // Versendet das Formular automatisch als E-Mail an dienstleistung-gonsior@web.de
   // ohne dass sich der Mail-Client des Nutzers öffnet.
